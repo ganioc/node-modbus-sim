@@ -34,6 +34,18 @@ var protocol = new Protocol();
 var device = new Device(role, port, protocol);
 
 
+
+
+// Open errors will be emitted as an error event
+port.on("error", function (err) {
+    console.log("Error: ", err.message);
+});
+
+port.on("open", function () {
+    console.log("Port opened");
+});
+
+
 if (role === 1) {
     // master
     var index = 0;
@@ -52,23 +64,9 @@ if (role === 1) {
     setInterval(function () {
         var addr = addresses.next().value;
         Utils.printYellow("\nMaster Send to address:", addr);
-        device.sendMsg(addr, protocol.DEF.FUNC_READ_COIL, 1, 252);
-    }, 5000);
+        device.sendMsg(addr, protocol.DEF.FUNC_READ_COIL, 1, 222);
+    }, Config.master.period);
 
 } else {
     // slave
 }
-
-// Open errors will be emitted as an error event
-port.on("error", function (err) {
-    console.log("Error: ", err.message);
-});
-
-port.on("open", function () {
-    console.log("Port opened");
-});
-
-// device.on("message", function (msg) {
-//     console.log("RX");
-//     console.log(msg);
-// });
