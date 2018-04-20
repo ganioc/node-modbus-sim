@@ -1,0 +1,15 @@
+{
+    "protocol": "modbus",
+
+    "baudRate": 9600,
+    "master": {
+        "period": 5000,
+        "addrLst": [80, 10, 30],
+        "portName": "/dev/tty.wchusbserial142410"
+    },
+    "slave": {
+        "addr": 80,
+        "portName": "/dev/tty.wchusbserial142430"
+    }
+
+}
